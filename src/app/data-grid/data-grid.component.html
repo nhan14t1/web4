@@ -1,0 +1,48 @@
+<dx-data-grid
+  [dataSource]="dataSource"
+  (onRowInserted)="onRowInserted($event)"
+  (onRowUpdated)="onRowUpdated($event)"
+  (onRowRemoved)="onRowRemoved($event)"
+  >
+  <dxo-editing
+    mode="row"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+    [allowUpdating]="true">
+  </dxo-editing>
+
+  <dxi-column dataField="Description">
+    <dxi-validation-rule type="required" message="Not empty">
+    </dxi-validation-rule>
+  </dxi-column>
+
+  <dxi-column dataField="ImageLocation" cellTemplate="imageColumn">
+    <dxi-validation-rule type="required" message="Not empty">
+    </dxi-validation-rule>
+  </dxi-column>
+
+  <dxi-column dataField="MenuId">
+    <dxo-lookup
+      [dataSource]="menuIds"
+    ></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="Name">
+    <dxi-validation-rule type="required" message="Not Empty!">
+    </dxi-validation-rule>
+  </dxi-column>
+
+  <dxi-column dataField="PreparationTime">
+
+  </dxi-column>
+
+  <dxi-column dataField="Price">
+    <dxi-validation-rule type="required" message="Not empty">
+    </dxi-validation-rule>
+  </dxi-column>
+
+  <div *dxTemplate="let data of 'imageColumn'">
+    <img [src]="data.value" width="70" height="auto"/>
+  </div>
+
+</dx-data-grid> 
